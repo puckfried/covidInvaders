@@ -6,7 +6,7 @@ class Backfire {
         this.height = 15;
         this.exist = true;
         this.direction = 0;
-        this.style = style // a random number between 0-10 
+        this.style = style // a random number between 0-10 to create a 10% chance for getting an extra live
     }
 
     show(enemy='alien') {

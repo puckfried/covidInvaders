@@ -8,11 +8,6 @@ class Ship  {
         this.syringe = syringe;
     }
     show() {
-        // ctx.beginPath();
-        //     ctx.rect(this.x, this.y, this.width, this.height);
-        //     ctx.fillStyle = "#0095DD";
-        //     ctx.fill();
-        // ctx.closePath();
         ctx.drawImage(mario, this.x, this.y, this.width, this.height);
     }
     
