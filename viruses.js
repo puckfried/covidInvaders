@@ -10,12 +10,7 @@ class Alien {
     }
 
     show() {
-            // ctx.beginPath();
-            // ctx.rect(this.x, this.y, this.width, this.height);
-            // ctx.fillStyle = this.color;
-            // ctx.fill();
-            // ctx.closePath();
-            ctx.drawImage(virus, this.x, this.y, this.width, this.height);
+             ctx.drawImage(virus, this.x, this.y, this.width, this.height);
 
     }
 
