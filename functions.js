@@ -1,13 +1,19 @@
 // Here the instances will be created (Mario, viruses and the status-bar)
 function setup(){
+    //create player figure (instance of Ship) 
     spaceShip = new Ship(canvas.width, canvas.height);
+    //aliens created into array
     for (let i=0; i<10; i++ ){
         aliens[i] = new Alien(canvas.width/11*(i+1), 30);
     }
-
+    //status bar created (instance of Status)
     status = new Status(score,spaceShip.lives);
+    
+    //Endgegner instance created
     endgegner = new Endgegner((canvas.width/2-100),-230);
-    setInterval(reloadVacc,2000);
+    
+    //2 intervall functions started, for later use
+    setInterval(reloadVacc,2000); 
     setInterval(timerFunc,1000);
 
 
@@ -17,14 +23,18 @@ function setup(){
 function draw(){
 //Check if still alive
     if (spaceShip.lives > 0){
-        ctx.clearRect(0, 0, canvas.width, canvas.height); 
-        status.show();
-        spaceShip.show();
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height); //clear the screen 
+        status.show(); //show the status bar on the top
+        spaceShip.show(); //show the player figure on screen
     
+       //check if there are aliens existing (array not empty)
         if (aliens.length>0){
+             //call the alien functions for each alien in array 
             for (let i=0; i<aliens.length; i++){
             aliens[i].show();
             aliens[i].move();
+                //check if the canvas borders are reached and change directions
                 if (aliens[i].x+aliens[i].width >= canvas.width || aliens[i].x <= 0) {
                     aliens.forEach(element => {
                         element.moving = element.moving*-1;
@@ -34,23 +44,24 @@ function draw(){
 
             }
     
-            //Speed Up of the viruses
+            //Speed Up of the viruses after certain points
             if (level === 3 || level === 9 || level === 15){
-            console.log('Speed up!!')
-            aliens.map(element => {
+                aliens.map(element => {
                 element.moving *= 1.8
-            })
-            level++
-            console.log('level added now:', level)
+                })
+                level++
+                console.log('level added now:', level)
             }
-            shooting()
-            answer();
-            spaceShip.move()
-            requestAnimationFrame(draw);
+            
+            shooting(); //function coordinating the shooting from player
+            answer(); //function coordinating the shooting from viruses
+            spaceShip.move(); //moving from player is performed here
+            requestAnimationFrame(draw); //reload the draw function from the beginning
         }
 
+        //aliens array is empty
         else if (aliens.length===0) {
-            // Endgegner
+            // Endgegner still alive
             if (endgegner.hitten<25){
                 endgegner.showEnd();
                 endgegner.moveEnd()
@@ -64,8 +75,8 @@ function draw(){
                 endgegner.fight();
                 requestAnimationFrame(draw);
             }
+            // Endgegner done
             else {
-                console.log(endgegner)
                 status.won();
                 if (again=== true){
                     document.location.reload();
@@ -89,25 +100,26 @@ function draw(){
 
 // The function for the shooting of Mario
 function shooting(enemy='alien'){
+    //shooting array is looped through and every drop is displayed and moved
     for (let i=0; i<drops.length; i++) {
         if (drops[i].exist){
                 drops[i].show()
                 drops[i].move()
-       
+    
+            //Different shooting for aliens and Endgegner
             if (enemy === 'alien') {
                 for (let j=0; j<aliens.length; j++){
-                    drops[i].hit(aliens[j])
+                    drops[i].hit(aliens[j]) //for every shot there is a demolition check (hit() method)
                     if (aliens[j].hitten == 3) {
-                        aliens.splice(j,1)
+                        aliens.splice(j,1) //Aliens get spliced out of the array if hitten 
                     }
-            }
+                }
             }
             else if(enemy === 'endgegner') {
-                drops[i].hit(endgegner);
-                
+                drops[i].hit(endgegner); //demolition check with endgegner
             }
 
-        drops[i].vanish();
+            drops[i].vanish(); //method to delete drops after hitting or leaving the canvas
     }
     }
 }

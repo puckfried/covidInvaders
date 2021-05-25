@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 96vw;
+    height: 97vh;
+    font-family: 'Press Start 2P', cursive;
+}
+
+img {
+    visibility: hidden;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    
+}
+canvas {
+    width: 80vw; 
+    height: 80vh; 
+    border: 10px solid black;
+    background-size: contain;
+    font-family: 'Press Start 2P', cursive;
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 6px;
+}

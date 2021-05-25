@@ -11,9 +11,9 @@ let virus3 = document.getElementById('virus3');
 let vacc = document.getElementById('vacc');
 let heart = document.getElementById('heart');
 
-// creating variables for the instances (Mario, Viruses, Firing, status bar)
+// creating global variables for the instances (Mario, Viruses, Firing, status bar)
 let spaceship;
-let aliens = []
+let aliens = [];
 let drops =[];
 let backfire = [];
 let endgegner;

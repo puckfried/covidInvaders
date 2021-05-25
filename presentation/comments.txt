@@ -1,0 +1,15 @@
+Figure class
+move()
+
+--> adding if(rightPressed){
+
+            if (this.x + this.width > canvas.width){
+                this.x = canvas.width - this.width;
+            }
+
+
+--> adding if(leftPressed){
+
+	    if (this.x < 0){
+                this.x = 0;
+            }
