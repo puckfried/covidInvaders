@@ -44,7 +44,7 @@ let input = {
     //mouse move actions
     mouseMoveHandler(e) {
         console.log(window.screen.availWidth)
-        let relativeX = (e.clientX - canvas.offsetLeft)*0.8;
+        let relativeX = (e.clientX - canvas.offsetLeft)*0.7;
             if(relativeX > 0 && relativeX < canvas.width) {
             // relativeX < spaceShip.x ? leftPressed = true : leftPressed = false;
             // relativeX > spaceShip.x ? rightPressed = true : rightPressed = false;
